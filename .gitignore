@@ -1,1 +1,7 @@
 _build/
+build/
+_install/
+install
+.idea/
+**/cmake-build-debug/
+**/cmake-build-release/
