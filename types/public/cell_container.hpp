@@ -9,7 +9,7 @@
 class CellContainer
 {
 public:
-    explicit CellContainer(std::array<Cell*, 9> cells, const std::size_t index);
+    explicit CellContainer(std::array<Cell*, 9>& cells, const std::size_t index);
     std::size_t GetIndex() const;
 
     std::array<Cell*, 9> GetAllCells();
@@ -29,7 +29,7 @@ public:
     // void removeNumbersFromAllCellsExceptSpecified(std::vector<Cell*> cellNotRemove, std::vector<std::size_t>& numbersToRemove);
 
 
-private:
+protected:
     std::size_t m_index;
     std::array<Cell*, 9> m_cells;
 };

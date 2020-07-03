@@ -1,4 +1,4 @@
-add_library(types src/cell.cpp src/cell_container.cpp)
+add_library(types src/cell.cpp src/cell_container.cpp src/sudoku.cpp)
 target_include_directories(types PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public>)
 
@@ -10,4 +10,8 @@ if(BUILD_TESTS)
     add_executable(cell_container_test test/cell_container_test.cpp)
     gtest_add_tests(TARGET cell_container_test)
     target_link_libraries(cell_container_test types gtest gtest_main)
+
+    add_executable(sudoku_test test/sudoku_test.cpp)
+    gtest_add_tests(TARGET sudoku_test)
+    target_link_libraries(sudoku_test types gtest gtest_main)
 endif()
