@@ -9,6 +9,7 @@ if(BUILD_TESTS)
     find_package(GTest REQUIRED)
 endif()
 
+add_subdirectory(types)
 add_subdirectory(solver)
 add_subdirectory(reader)
 
