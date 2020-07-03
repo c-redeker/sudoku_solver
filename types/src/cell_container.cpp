@@ -1,23 +1,23 @@
 #include <cell_container.hpp>
 
-CellContainer::CellContainer(std::array<std::shared_ptr<Cell>, 9> cells, const std::size_t index)
+CellContainer::CellContainer(std::array<Cell*, 9> cells, const std::size_t index)
     : m_cells(cells), m_index(index){};
 
 std::size_t CellContainer::GetIndex() const { return m_index; }
 
-std::array<std::shared_ptr<Cell>, 9> CellContainer::GetAllCells() { return m_cells; };
+std::array<Cell*, 9> CellContainer::GetAllCells() { return m_cells; };
 
-std::vector<std::shared_ptr<Cell>> CellContainer::GetEmptyCells() {
-    std::vector<std::shared_ptr<Cell>> empty_cells;
+std::vector<Cell*> CellContainer::GetEmptyCells() {
+    std::vector<Cell*> empty_cells;
     for (const auto &cell : m_cells) {
         if (!(cell->IsCellFilled())) { empty_cells.push_back(cell); }
     }
     return empty_cells;
 };
 
-std::vector<std::shared_ptr<Cell>>
+std::vector<Cell*>
 CellContainer::GetEmptyCellsIncludingThisPossibleNumber(std::size_t number_to_check) {
-    std::vector<std::shared_ptr<Cell>> return_cells;
+    std::vector<Cell*> return_cells;
     for (const auto &empty_cell : this->GetEmptyCells()) {
         auto possible_numbers = empty_cell->GetPossibleNumbers();
         bool isPossibleNumberInThisCell =
