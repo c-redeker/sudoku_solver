@@ -21,6 +21,13 @@ TEST(Sudoku, construct_check_column) {
     EXPECT_EQ(8, column->GetIndex());
 }
 
+TEST(Sudoku, construct_check_rectangle) {
+    std::array<std::size_t, 81> numbers{0};
+    Sudoku sudoku(numbers);
+    const auto rectangle = sudoku.GetRectangle(7);
+    EXPECT_EQ(7, rectangle->GetIndex());
+}
+
 // ---------- main ---------------------------------------------------------------------
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
