@@ -5,7 +5,7 @@
 
 #include <reader.hpp>
 
-bool SudokuReader::ReadSudokuFromTxtFile(const std::string &path_to_text_file, std::vector<uint> &numbers) {
+bool SudokuReader::ReadSudokuFromTxtFile(const std::string &path_to_text_file, std::vector<std::size_t> &numbers) {
     bool success{true};
     std::ifstream input_file;
     input_file.open(path_to_text_file);
@@ -35,7 +35,7 @@ bool SudokuReader::ReadSudokuFromTxtFile(const std::string &path_to_text_file, s
     return success;
 };
 
-bool SudokuReader::CheckValidityOfNumbers(const std::vector<uint> &numbers) {
+bool SudokuReader::CheckValidityOfNumbers(const std::vector<std::size_t> &numbers) {
     if (numbers.size() != kCountNumbers) {
         std::cout << "Invalid input file: " << numbers.size() << " numbers found \n";
         return false;

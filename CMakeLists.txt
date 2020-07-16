@@ -14,4 +14,4 @@ add_subdirectory(solver)
 add_subdirectory(reader)
 
 add_executable(sudoku_solver_main main.cpp)
-target_link_libraries(sudoku_solver_main reader)
+target_link_libraries(sudoku_solver_main reader types)

@@ -7,11 +7,18 @@ TEST(Sudoku, construct_sudoku) {
     EXPECT_NO_THROW(Sudoku sudoku(numbers));
 }
 
-TEST(Sudoku, construct_check_rows) {
+TEST(Sudoku, construct_check_row) {
     std::array<std::size_t, 81> numbers{0};
     Sudoku sudoku(numbers);
     const auto row = sudoku.GetRow(5);
     EXPECT_EQ(5, row->GetIndex());
+}
+
+TEST(Sudoku, construct_check_column) {
+    std::array<std::size_t, 81> numbers{0};
+    Sudoku sudoku(numbers);
+    const auto column = sudoku.GetColumn(8);
+    EXPECT_EQ(8, column->GetIndex());
 }
 
 // ---------- main ---------------------------------------------------------------------
