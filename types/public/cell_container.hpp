@@ -28,7 +28,6 @@ public:
 
     // void removeNumbersFromAllCellsExceptSpecified(std::vector<Cell*> cellNotRemove, std::vector<std::size_t>& numbersToRemove);
 
-
 protected:
     std::size_t m_index;
     std::array<Cell*, 9> m_cells;
