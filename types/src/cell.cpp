@@ -44,7 +44,7 @@ void Cell::UpdatePossibleNumbers() {
     }
 }
 
-void Cell::RemoveNumbersFromPossibleNumbers(std::vector<std::size_t> &numbers_to_remove) {
+void Cell::RemoveNumbersFromPossibleNumbers(const std::vector<std::size_t> &numbers_to_remove) {
     for (const auto number_to_remove : numbers_to_remove) {
         if (this->GetColumnIndex() == 0 && this->GetRowIndex() == 3 && number_to_remove == 1) std::cout << "test";
         this->m_possible_numbers.erase(
@@ -53,7 +53,7 @@ void Cell::RemoveNumbersFromPossibleNumbers(std::vector<std::size_t> &numbers_to
     }
 }
 
-void Cell::RemoveAllPossibleNumberExceptSpecified(std::vector<std::size_t> &numbers_to_keep) {
+void Cell::RemoveAllPossibleNumberExceptSpecified(const std::vector<std::size_t> &numbers_to_keep) {
     for (const auto possible_number : m_possible_numbers) {
         if (std::find(numbers_to_keep.begin(), numbers_to_keep.end(), possible_number) != numbers_to_keep.end())
             continue;

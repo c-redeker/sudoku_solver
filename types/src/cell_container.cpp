@@ -9,6 +9,7 @@ std::array<Cell*, 9> CellContainer::GetAllCells() { return m_cells; };
 
 std::vector<Cell*> CellContainer::GetEmptyCells() {
     std::vector<Cell*> empty_cells;
+    empty_cells.reserve(9U);
     for (const auto &cell : m_cells) {
         if (!(cell->IsCellFilled())) { empty_cells.push_back(cell); }
     }

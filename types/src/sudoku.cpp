@@ -4,6 +4,15 @@
 
 Sudoku::Sudoku(const std::array<std::size_t, 81> &numbers) { CreateSudoku(numbers); };
 
+std::vector<Cell*> Sudoku::GetEmptyCells() const {
+    std::vector<Cell*> empty_cells;
+    empty_cells.resize(9U);
+    for (const auto &cell : m_cells) {
+        if (!(cell->IsCellFilled())) { empty_cells.push_back(cell); }
+    }
+    return empty_cells;
+};
+
 void Sudoku::CreateSudoku(const std::array<std::size_t, 81> &numbers) {
     CreateCellsOfSudoku(numbers);
     CreateRectanglesOfSudoku();
@@ -12,15 +21,18 @@ void Sudoku::CreateSudoku(const std::array<std::size_t, 81> &numbers) {
 };
 
 void Sudoku::CreateCellsOfSudoku(const std::array<std::size_t, 81> &numbers) {
-    int row{0};
-    int column{0};
+    int row_index{0U};
+    int column_index{0U};
+    int counter{0U};
     for (const auto number : numbers) {
-        Cell *cellPtr = new Cell(number, row, column);
-        AddCellToGrid(cellPtr, row, column);
-        column++;
-        if (column == 9) {
-            row++;
-            column = 0;
+        Cell *cell_ptr = new Cell(number, row_index, column_index);
+        m_grid[row_index][column_index] = cell_ptr;
+        m_cells[counter] = cell_ptr;
+        ++counter;
+        ++column_index;
+        if (column_index == 9) {
+            ++row_index;
+            column_index = 0;
         }
     }
 };
@@ -76,5 +88,3 @@ Rectangle *Sudoku::GetRectangle(std::size_t index) { return m_rectangles[index];
 Row *Sudoku::GetRow(std::size_t index) { return m_rows[index]; }
 
 Column *Sudoku::GetColumn(std::size_t index) { return m_columns[index]; }
-
-void Sudoku::AddCellToGrid(Cell *cell, std::size_t row, std::size_t column) { m_grid[row][column] = cell; };

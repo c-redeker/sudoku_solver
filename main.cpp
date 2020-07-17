@@ -1,5 +1,7 @@
 #include <reader.hpp>
 #include <sudoku.hpp>
+#include <solver_simple_exclude.hpp>
+
 #include <vector>
 
 int main(int argc, char **argv) {
@@ -12,6 +14,12 @@ int main(int argc, char **argv) {
         }
         // create sudoku object
         Sudoku sudoku(numbers_array);
+
+        std::vector<ISolver*> solver{};
+        // add more solver
+        ISolver* solver_simple_exclude = new SolverSimpleExclude{};
+        solver.push_back(solver_simple_exclude);
+
     }
     return 0;
 }

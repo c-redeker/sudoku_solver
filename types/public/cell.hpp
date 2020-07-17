@@ -21,8 +21,8 @@ public:
 
     std::vector<std::size_t> GetPossibleNumbers();
     std::size_t GetCountPossibleNumbers();
-    void RemoveNumbersFromPossibleNumbers(std::vector<std::size_t> &numbers_to_remove);
-    void RemoveAllPossibleNumberExceptSpecified(std::vector<std::size_t> &numbers_to_keep);
+    void RemoveNumbersFromPossibleNumbers(const std::vector<std::size_t> &numbers_to_remove);
+    void RemoveAllPossibleNumberExceptSpecified(const std::vector<std::size_t> &numbers_to_keep);
 
 private:
     std::size_t m_number{0};         // [0..9]

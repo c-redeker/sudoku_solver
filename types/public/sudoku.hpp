@@ -12,12 +12,13 @@
 class Sudoku {
 public:
     Sudoku(const std::array<std::size_t, 81> &numbers);
-
+    std::vector<Cell*> GetEmptyCells() const;
     Rectangle *GetRectangle(std::size_t index);
     Row *GetRow(std::size_t index);
     Column *GetColumn(std::size_t index);
 
 private:
+    std::array<Cell*, 81> m_cells;
     Cell *m_grid[9][9];
     std::array<Rectangle *, 9> m_rectangles;
     std::array<Row *, 9> m_rows;
@@ -29,7 +30,6 @@ private:
     void CreateRowsOfSudoku();
     void CreateColumnsOfSudoku();
     std::array<Cell *, 9> GetRectangleCells(std::size_t rectangle_index) const;
-    void AddCellToGrid(Cell *, std::size_t, std::size_t);
     Cell *GetCell(std::size_t, std::size_t);
 };
 
