@@ -15,7 +15,7 @@ make
 ## Usage
 from build directory _build run
 ```bash
-./sudoku_solver_main
+./sudoku_solver_main path_to_sudoku_file
 ```
 
 ## License
