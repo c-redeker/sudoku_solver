@@ -1,14 +1,13 @@
 #include <cell_container.hpp>
 
-CellContainer::CellContainer(std::array<Cell*, 9>& cells, const std::size_t index)
-    : m_cells(cells), m_index(index){};
+CellContainer::CellContainer(std::array<Cell *, 9> &cells, const std::size_t index) : m_cells(cells), m_index(index){};
 
 std::size_t CellContainer::GetIndex() const { return m_index; }
 
-std::array<Cell*, 9> CellContainer::GetAllCells() { return m_cells; };
+std::array<Cell *, 9> CellContainer::GetAllCells() const { return m_cells; };
 
-std::vector<Cell*> CellContainer::GetEmptyCells() {
-    std::vector<Cell*> empty_cells;
+std::vector<Cell *> CellContainer::GetEmptyCells() const {
+    std::vector<Cell *> empty_cells;
     empty_cells.reserve(9U);
     for (const auto &cell : m_cells) {
         if (!(cell->IsCellFilled())) { empty_cells.push_back(cell); }
@@ -16,9 +15,8 @@ std::vector<Cell*> CellContainer::GetEmptyCells() {
     return empty_cells;
 };
 
-std::vector<Cell*>
-CellContainer::GetEmptyCellsIncludingThisPossibleNumber(std::size_t number_to_check) {
-    std::vector<Cell*> return_cells;
+std::vector<Cell *> CellContainer::GetEmptyCellsIncludingThisPossibleNumber(std::size_t number_to_check) {
+    std::vector<Cell *> return_cells;
     for (const auto &empty_cell : this->GetEmptyCells()) {
         auto possible_numbers = empty_cell->GetPossibleNumbers();
         bool isPossibleNumberInThisCell =
@@ -59,7 +57,7 @@ CellContainer::GetEmptyCellsIncludingThisPossibleNumber(std::size_t number_to_ch
 //    return cellsContainingAtLeastOne;
 //};
 
-std::size_t CellContainer::GetCountOfEmptyCells() { return GetEmptyCells().size(); }
+std::size_t CellContainer::GetCountOfEmptyCells() const { return GetEmptyCells().size(); }
 
 std::vector<std::size_t> CellContainer::GetFilledNumbers() const {
     std::vector<std::size_t> filled_numbers;

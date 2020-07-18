@@ -2,7 +2,7 @@
 
 #include <rectangle.hpp>
 
-class RectangleFixture : public ::testing::Test {
+class CheckerFixture : public ::testing::Test {
 protected:
     std::array<Cell *, 9> m_cells{};
 
@@ -23,18 +23,18 @@ protected:
     }
 };
 
-TEST_F(RectangleFixture, construct_rectangle_with_empty_cells) {
+TEST_F(CheckerFixture, construct_rectangle_with_empty_cells) {
     Rectangle rectangle{m_cells, 0};
     EXPECT_EQ(9, rectangle.GetCountOfEmptyCells());
 }
 
-TEST_F(RectangleFixture, rectangle_filled_numbers) {
+TEST_F(CheckerFixture, rectangle_filled_numbers) {
     Rectangle rectangle{m_cells, 3};
     std::vector<std::size_t> filled_numbers{};
     EXPECT_EQ(filled_numbers, rectangle.GetFilledNumbers());
 }
 
-TEST_F(RectangleFixture, rectangle_missing_numbers) {
+TEST_F(CheckerFixture, rectangle_missing_numbers) {
     Rectangle rectangle{m_cells, 7};
     std::vector<std::size_t> missing_numbers{1, 2, 3, 4, 5, 6, 7, 8, 9};
     EXPECT_EQ(missing_numbers, rectangle.GetMissingNumbers());

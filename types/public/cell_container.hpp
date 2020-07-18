@@ -1,23 +1,22 @@
 #ifndef SUDOKU_SOLVER_CELL_CONTAINER_H
 #define SUDOKU_SOLVER_CELL_CONTAINER_H
 
-#include <cell.hpp>
 #include <array>
-#include <vector>
+#include <cell.hpp>
 #include <memory>
+#include <vector>
 
-class CellContainer
-{
+class CellContainer {
 public:
-    explicit CellContainer(std::array<Cell*, 9>& cells, const std::size_t index);
+    explicit CellContainer(std::array<Cell *, 9> &cells, const std::size_t index);
     std::size_t GetIndex() const;
 
-    std::array<Cell*, 9> GetAllCells();
+    std::array<Cell *, 9> GetAllCells() const;
 
-    std::vector<Cell*> GetEmptyCells();
-    std::size_t GetCountOfEmptyCells();
+    std::vector<Cell *> GetEmptyCells() const;
+    std::size_t GetCountOfEmptyCells() const;
 
-    std::vector<Cell*> GetEmptyCellsIncludingThisPossibleNumber(std::size_t);
+    std::vector<Cell *> GetEmptyCellsIncludingThisPossibleNumber(std::size_t);
 
     // std::vector<Cell*> getAllCellsIncludingPossibleNumberSubset(Subset&);
     // std::vector<Cell*> getAllCellsContainingAtLeastOneNumber(std::vector<std::size_t>);
@@ -30,7 +29,7 @@ public:
 
 protected:
     std::size_t m_index;
-    std::array<Cell*, 9> m_cells;
+    std::array<Cell *, 9> m_cells;
 };
 
 #endif//SUDOKU_SOLVER_CELL_CONTAINER_H
