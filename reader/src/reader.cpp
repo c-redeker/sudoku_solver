@@ -11,19 +11,24 @@ bool SudokuReader::ReadSudokuFromTxtFile(const std::string &path_to_text_file, s
     input_file.open(path_to_text_file);
     std::string line;
     std::string::size_type sz;// alias of size_t
-    std::string delimiter = ";";
+    std::string delimiter = ",";
     int pos{0};
 
     numbers.clear();
     if (input_file.is_open()) {
-        while (getline(input_file, line)) {
-            do {
-                pos = line.find(delimiter);
-                const std::string single_number{line.substr(0, pos)};
-                const int number{std::stoi(single_number, &sz)};
-                numbers.push_back(static_cast<uint>(number));
-                line.erase(0, pos + delimiter.length());
-            } while (!line.empty() && pos >= 0);
+        getline(input_file, line);
+        pos = line.find(delimiter);
+        if (pos < 0) { pos = line.size(); }
+        const std::string all_numbers_string{line.substr(0, pos)};
+        for (std::size_t index{0}; index < all_numbers_string.size(); ++index) {
+            std::string single_number{all_numbers_string.at(index)};
+            std::string::const_iterator it = single_number.begin();
+            if (!std::isdigit(*it)) {
+                std::cout << "Invalid input file: invalid digit found \n";
+                return false;
+            }
+            const int number{std::stoi(single_number)};
+            numbers.push_back(static_cast<std::size_t>(number));
         }
         input_file.close();
         success = CheckValidityOfNumbers(numbers);

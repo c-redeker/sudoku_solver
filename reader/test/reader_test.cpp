@@ -1,4 +1,5 @@
 #include <gtest/gtest.h>
+
 #include <reader.hpp>
 
 TEST(sudoku_reader, empty_input_file) {
@@ -13,9 +14,9 @@ TEST(sudoku_reader, input_file_contains_too_many_numbers) {
     EXPECT_FALSE(success);
 }
 
-TEST(sudoku_reader, input_file_invalid_number) {
+TEST(sudoku_reader, input_file_contains_negative_number) {
     std::vector<std::size_t> numbers{};
-    const bool success = SudokuReader::ReadSudokuFromTxtFile("./testfile_invalid_number.txt", numbers);
+    const bool success = SudokuReader::ReadSudokuFromTxtFile("./testfile_negative_number.txt", numbers);
     EXPECT_FALSE(success);
 }
 

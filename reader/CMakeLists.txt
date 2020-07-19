@@ -9,6 +9,6 @@ if(BUILD_TESTS)
 
     file(COPY test/testfile_empty.txt DESTINATION ${CMAKE_BINARY_DIR}/reader)
     file(COPY test/testfile_too_many_numbers.txt DESTINATION ${CMAKE_BINARY_DIR}/reader)
-    file(COPY test/testfile_invalid_number.txt DESTINATION ${CMAKE_BINARY_DIR}/reader)
+    file(COPY test/testfile_negative_number.txt DESTINATION ${CMAKE_BINARY_DIR}/reader)
     file(COPY test/testfile_valid.txt DESTINATION ${CMAKE_BINARY_DIR}/reader)
 endif()
