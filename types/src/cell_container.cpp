@@ -1,6 +1,6 @@
 #include <cell_container.hpp>
 
-CellContainer::CellContainer(std::array<Cell *, 9> &cells, const std::size_t index) : m_cells(cells), m_index(index){};
+CellContainer::CellContainer(std::array<Cell *, 9> &cells, const std::size_t index) : m_index(index), m_cells(cells){};
 
 std::size_t CellContainer::GetIndex() const { return m_index; }
 
