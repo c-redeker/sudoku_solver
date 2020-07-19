@@ -17,3 +17,5 @@ add_subdirectory(checker)
 
 add_executable(sudoku_solver_main main.cpp)
 target_link_libraries(sudoku_solver_main reader solver printer checker)
+
+file(COPY data/sudokus.txt DESTINATION ${CMAKE_BINARY_DIR})

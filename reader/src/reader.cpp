@@ -10,7 +10,6 @@ bool SudokuReader::ReadSudokuFromTxtFile(const std::string &path_to_text_file, s
     std::ifstream input_file;
     input_file.open(path_to_text_file);
     std::string line;
-    std::string::size_type sz;// alias of size_t
     std::string delimiter = ",";
     int pos{0};
 
