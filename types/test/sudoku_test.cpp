@@ -28,6 +28,14 @@ TEST(Sudoku, construct_check_rectangle) {
     EXPECT_EQ(7, rectangle->GetIndex());
 }
 
+TEST(Sudoku, get_empty_cells) {
+    std::array<std::size_t, 81> numbers{0};
+    Sudoku sudoku(numbers);
+    auto empty_cells = sudoku.GetEmptyCells();
+    ASSERT_EQ(81, empty_cells.size());
+    for (auto cell : empty_cells) { ASSERT_TRUE(cell); } // not nullpointer
+}
+
 // ---------- main ---------------------------------------------------------------------
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

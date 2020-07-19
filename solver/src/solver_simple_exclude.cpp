@@ -2,7 +2,8 @@
 #include <free_functions_solver.hpp>
 
 void SolverSimpleExclude::Solve(Sudoku &sudoku) {
-    for (auto empty_cell : sudoku.GetEmptyCells()) {
+    auto empty_cells = sudoku.GetEmptyCells();
+    for (auto empty_cell : empty_cells) {
         const auto row_index = empty_cell->GetRowIndex();
         const auto numbers_in_row = sudoku.GetRow(row_index)->GetFilledNumbers();
         empty_cell->RemoveNumbersFromPossibleNumbers(numbers_in_row);

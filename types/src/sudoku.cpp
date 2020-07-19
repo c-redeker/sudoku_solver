@@ -6,7 +6,7 @@ Sudoku::Sudoku(const std::array<std::size_t, 81> &numbers) { CreateSudoku(number
 
 std::vector<Cell *> Sudoku::GetEmptyCells() const {
     std::vector<Cell *> empty_cells;
-    empty_cells.resize(9U);
+    empty_cells.reserve(81U);
     for (const auto &cell : m_cells) {
         if (!(cell->IsCellFilled())) { empty_cells.push_back(cell); }
     }

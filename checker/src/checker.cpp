@@ -2,7 +2,7 @@
 
 #include <iostream>
 
-bool SudokuChecker::CheckSudoku(Sudoku &sudoku) {
+bool SudokuChecker::IsSolvable(Sudoku &sudoku) {
     int number{0};
     int count{1};
 
