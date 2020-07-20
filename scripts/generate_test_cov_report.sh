@@ -1,10 +1,10 @@
-./clean.sh
+SCRIPTPATH="$( cd "$(dirname "$0")" >/dev/null 2>&1 ; pwd -P )"
 
-./build.sh
+$SCRIPTPATH/clean.sh
+$SCRIPTPATH/build.sh
+$SCRIPTPATH/run_unit_tests.sh
 
-cd ../_build
-ctest
-
+cd $SCRIPTPATH/../_build
 lcov --capture --directory . --output-file test_coverage.info
 lcov --remove test_coverage.info '/usr/*' '7/*' '*/test/*' -o test_coverage_filtered.info
 
