@@ -2,6 +2,7 @@
 #include <printer.hpp>
 #include <reader.hpp>
 #include <solver_simple_exclude.hpp>
+#include <solver_unique_candidates.hpp>
 #include <sudoku.hpp>
 
 #include <vector>
@@ -26,8 +27,8 @@ int main(int argc, char **argv) {
 
         std::vector<ISolver *> solver_list{};
         // add more solver
-        ISolver *solver_simple_exclude = new SolverSimpleExclude{};
-        solver_list.push_back(solver_simple_exclude);
+        solver_list.push_back(new SolverSimpleExclude{});
+        solver_list.push_back(new SolverUniqueCandidates{});
 
         std::size_t count_empty_cells_previous{82U};
         auto count_empty_cells = sudoku.GetCountOfEmptyCells();
@@ -45,6 +46,7 @@ int main(int argc, char **argv) {
 
         std::cout << "\n ------- solution after solving with 1 solver ---------- \n";
         SudokuPrinter::PrintCellNumbers(sudoku);
+        SudokuChecker::IsSolvable(sudoku);
     }
     return 0;
 }

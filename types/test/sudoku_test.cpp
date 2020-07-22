@@ -33,7 +33,15 @@ TEST(Sudoku, get_empty_cells) {
     Sudoku sudoku(numbers);
     auto empty_cells = sudoku.GetEmptyCells();
     ASSERT_EQ(81, empty_cells.size());
-    for (auto cell : empty_cells) { ASSERT_TRUE(cell); } // not nullpointer
+    for (auto cell : empty_cells) { ASSERT_TRUE(cell); }// not nullpointer
+}
+
+TEST(Sudoku, get_all_cell_containers) {
+    std::array<std::size_t, 81> numbers{0};
+    Sudoku sudoku(numbers);
+    auto cell_containers = sudoku.GetAllCellContainers();
+    ASSERT_EQ(27, cell_containers.size());
+    for (const auto container : cell_containers) { ASSERT_TRUE(container); }// not nullpointer
 }
 
 // ---------- main ---------------------------------------------------------------------

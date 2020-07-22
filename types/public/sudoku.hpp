@@ -16,6 +16,7 @@ public:
     Sudoku(const std::array<std::size_t, 81> &numbers);
     std::vector<Cell *> GetEmptyCells() const;
     std::size_t GetCountOfEmptyCells() const;
+    std::array<CellContainer*, 27> GetAllCellContainers() const;
     Rectangle *GetRectangle(std::size_t index);
     Row *GetRow(std::size_t index);
     Column *GetColumn(std::size_t index);
@@ -27,12 +28,14 @@ private:
     std::array<Rectangle *, 9> m_rectangles;
     std::array<Row *, 9> m_rows;
     std::array<Column *, 9> m_columns;
+    std::array<CellContainer*, 27> m_cell_containers;
     //methods:
     void CreateSudoku(const std::array<std::size_t, 81> &);
     void CreateCellsOfSudoku(const std::array<std::size_t, 81> &numbers);
     void CreateRectanglesOfSudoku();
     void CreateRowsOfSudoku();
     void CreateColumnsOfSudoku();
+    void CopyCellContainer();
     std::array<Cell *, 9> GetRectangleCells(std::size_t rectangle_index) const;
 };
 
