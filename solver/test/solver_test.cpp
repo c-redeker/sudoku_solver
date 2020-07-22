@@ -7,6 +7,10 @@ protected:
 
 };
 
+TEST(solver, dummy){
+
+}
+
 // ---------- main ---------------------------------------------------------------------
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);

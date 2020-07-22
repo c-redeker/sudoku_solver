@@ -3,6 +3,7 @@
 
 #include <array>
 #include <cell.hpp>
+
 #include <memory>
 #include <vector>
 
@@ -17,6 +18,8 @@ public:
     std::size_t GetCountOfEmptyCells() const;
 
     std::vector<Cell *> GetEmptyCellsIncludingThisPossibleNumber(std::size_t);
+
+    std::vector<Cell *> GetCellsWithEqualCountOfPossibleNumbers(const std::size_t count) const;
 
     // std::vector<Cell*> getAllCellsIncludingPossibleNumberSubset(Subset&);
     // std::vector<Cell*> getAllCellsContainingAtLeastOneNumber(std::vector<std::size_t>);

@@ -26,6 +26,16 @@ std::vector<Cell *> CellContainer::GetEmptyCellsIncludingThisPossibleNumber(std:
     return return_cells;
 }
 
+std::vector<Cell *> CellContainer::GetCellsWithEqualCountOfPossibleNumbers(const std::size_t count) const {
+    std::vector<Cell *> cells_with_equal_count_of_possible_numbers{};
+    for (const auto empty_cell : this->GetEmptyCells()) {
+        if (empty_cell->GetPossibleNumbers().size() == count) {
+            cells_with_equal_count_of_possible_numbers.push_back(empty_cell);
+        }
+    }
+    return cells_with_equal_count_of_possible_numbers;
+}
+
 //std::vector<Cell *> CellContainer::getAllCellsIncludingPossibleNumberSubset(Subset &subset) {
 //    std::vector<Cell *> cellIncludingSubset;
 //    for (auto emptyCell : this->GetEmptyCells()) {
