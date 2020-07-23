@@ -20,6 +20,7 @@ public:
     std::array<std::size_t, 2U> GetConnectedColumnIndices() const;
 
     std::vector<std::size_t> GetPossibleNumbers();
+    bool IsNumberPossible(std::size_t number) const;
     std::size_t GetCountPossibleNumbers();
     void RemoveNumbersFromPossibleNumbers(const std::vector<std::size_t> &numbers_to_remove);
     void RemoveAllPossibleNumberExceptSpecified(const std::vector<std::size_t> &numbers_to_keep);

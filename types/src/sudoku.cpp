@@ -21,9 +21,7 @@ std::size_t Sudoku::GetCountOfEmptyCells() const {
     return counter;
 };
 
-std::array<CellContainer*, 27> Sudoku::GetAllCellContainers() const {
-    return m_cell_containers;
-}
+std::array<CellContainer *, 27> Sudoku::GetAllCellContainers() const { return m_cell_containers; }
 
 void Sudoku::CreateSudoku(const std::array<std::size_t, 81> &numbers) {
     CreateCellsOfSudoku(numbers);
@@ -112,8 +110,10 @@ std::array<Cell *, 9> Sudoku::GetRectangleCells(std::size_t rectangle_index) con
 
 Cell *Sudoku::GetCell(std::size_t row, std::size_t column) const { return m_grid[row][column]; };
 
-Rectangle *Sudoku::GetRectangle(std::size_t index) { return m_rectangles[index]; }
+Rectangle *Sudoku::GetRectangle(std::size_t index) const { return m_rectangles[index]; }
 
-Row *Sudoku::GetRow(std::size_t index) { return m_rows[index]; }
+std::array<Rectangle *, 9> Sudoku::GetAllRectangles() const { return m_rectangles; }
 
-Column *Sudoku::GetColumn(std::size_t index) { return m_columns[index]; }
+Row *Sudoku::GetRow(std::size_t index) const { return m_rows[index]; }
+
+Column *Sudoku::GetColumn(std::size_t index) const { return m_columns[index]; }

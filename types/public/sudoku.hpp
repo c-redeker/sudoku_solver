@@ -10,16 +10,16 @@
 #include <rectangle.hpp>
 #include <row.hpp>
 
-
 class Sudoku {
 public:
     Sudoku(const std::array<std::size_t, 81> &numbers);
     std::vector<Cell *> GetEmptyCells() const;
     std::size_t GetCountOfEmptyCells() const;
-    std::array<CellContainer*, 27> GetAllCellContainers() const;
-    Rectangle *GetRectangle(std::size_t index);
-    Row *GetRow(std::size_t index);
-    Column *GetColumn(std::size_t index);
+    std::array<CellContainer *, 27> GetAllCellContainers() const;
+    Rectangle *GetRectangle(std::size_t index) const;
+    std::array<Rectangle *, 9> GetAllRectangles() const;
+    Row *GetRow(std::size_t index) const;
+    Column *GetColumn(std::size_t index) const;
     Cell *GetCell(std::size_t row, std::size_t column) const;
 
 private:
@@ -28,7 +28,7 @@ private:
     std::array<Rectangle *, 9> m_rectangles;
     std::array<Row *, 9> m_rows;
     std::array<Column *, 9> m_columns;
-    std::array<CellContainer*, 27> m_cell_containers;
+    std::array<CellContainer *, 27> m_cell_containers;
     //methods:
     void CreateSudoku(const std::array<std::size_t, 81> &);
     void CreateCellsOfSudoku(const std::array<std::size_t, 81> &numbers);

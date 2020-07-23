@@ -5,7 +5,8 @@
 #include <sudoku.hpp>
 
 class SolverSimpleExclude : public ISolver {
-    void Solve(Sudoku& sudoku);
+public:
+    void Solve(Sudoku& sudoku) override;
 };
 
 #endif//SUDOKU_SOLVER_SOLVERSIMPLEEXCLUDE_H

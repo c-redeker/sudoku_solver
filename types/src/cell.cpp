@@ -30,6 +30,10 @@ std::array<std::size_t, 2U> Cell::GetConnectedColumnIndices() const { return m_c
 
 std::vector<std::size_t> Cell::GetPossibleNumbers() { return m_possible_numbers; };
 
+bool Cell::IsNumberPossible(std::size_t number) const {
+    return std::find(m_possible_numbers.begin(), m_possible_numbers.end(), number) != m_possible_numbers.end();
+}
+
 std::size_t Cell::GetCountPossibleNumbers() { return m_possible_numbers.size(); };
 
 void Cell::UpdateCellFilledAttribute() { m_is_cell_filled = (m_number > 0U && m_number < 10U); };
