@@ -1,5 +1,5 @@
-#ifndef SUDOKU_SOLVER_SOLVER_NAKED_PAIRS_H
-#define SUDOKU_SOLVER_SOLVER_NAKED_PAIRS_H
+#ifndef SUDOKU_SOLVER_SOLVER_HIDDEN_PAIRS_H
+#define SUDOKU_SOLVER_SOLVER_HIDDEN_PAIRS_H
 
 #include <ISolver.hpp>
 #include <subset_generator.hpp>
@@ -20,6 +20,8 @@ private:
     static std::vector<Cell *> FindAllCellsWithSubset(const std::vector<Cell *> &empty_cells, const Subset &subset);
     static std::vector<Cell *> FindAllCellsWithAtLeastOneNumberFromSubset(const std::vector<Cell *> &empty_cells,
                                                                           const Subset &numbers);
+    static void RemoveAllNumbersExceptSubsetFromCells(const std::vector<Cell *> &cells, const Subset &numbers);
+    static const int kMaxSubsetSize{3};
 };
 
-#endif//SUDOKU_SOLVER_SOLVER_NAKED_PAIRS_H
+#endif//SUDOKU_SOLVER_SOLVER_HIDDEN_PAIRS_H

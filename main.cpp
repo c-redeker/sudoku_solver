@@ -2,10 +2,11 @@
 #include <checker.hpp>
 #include <printer.hpp>
 #include <reader.hpp>
-#include <solver_naked_pairs.h>
 #include <solver_simple_exclude.hpp>
 #include <solver_unique_candidates.hpp>
 #include <solver_block_row_column_interaction.hpp>
+#include <solver_naked_pairs.h>
+#include <solver_hidden_pairs.h>
 
 #include <vector>
 
@@ -31,8 +32,9 @@ int main(int argc, char **argv) {
         // add more solver
         solver_list.push_back(new SolverSimpleExclude{});
         solver_list.push_back(new SolverUniqueCandidates{});
-        solver_list.push_back(new SolverNakedPairs{});
         solver_list.push_back(new SolverBlockRowColumnInteraction{});
+        solver_list.push_back(new SolverNakedPairs{});
+        solver_list.push_back(new SolverHiddenPairs{});
 
         std::size_t count_empty_cells_previous{82U};
         auto count_empty_cells = sudoku.GetCountOfEmptyCells();
