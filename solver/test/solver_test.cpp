@@ -1,6 +1,7 @@
 #include <gtest/gtest.h>
 
 #include <solver_block_row_column_interaction.hpp>
+#include <solver_hidden_pairs.h>
 #include <solver_simple_exclude.hpp>
 
 class SolverFixture : public ::testing::Test {
@@ -57,6 +58,21 @@ TEST_F(SolverFixture, SolverBlockRowColumnInteraction_works_on_row) {
         } else {
             ASSERT_FALSE(cell->IsNumberPossible(5));
         }
+    }
+}
+
+TEST_F(SolverFixture, SolverHiddenPair_work_on_first_row) {
+    auto sudoku = CreateEmptySudoku();
+    std::vector<std::size_t> numbers{1, 3, 5};
+    for (uint8_t column_index{3}; column_index < 9; ++column_index) {
+        sudoku.GetCell(0, column_index)->RemoveNumbersFromPossibleNumbers(numbers);
+    }
+
+    SolverHiddenPairs solver_hidden_pairs{};
+    solver_hidden_pairs.Solve(sudoku);
+
+    for (uint8_t column_index{0}; column_index < 3; ++column_index) {
+        ASSERT_EQ(numbers, sudoku.GetCell(0, column_index)->GetPossibleNumbers());
     }
 }
 

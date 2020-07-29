@@ -53,6 +53,17 @@ TEST(Cell, check_possible_numbers) {
     ASSERT_FALSE(cell.IsNumberPossible(5));
 }
 
+TEST(Cell, remove_all_numbers_except_specified) {
+    std::size_t number{0};
+    std::size_t row_index{3};
+    std::size_t column_index{5};
+    Cell cell(number, row_index, column_index);
+
+    std::vector<std::size_t> numbers_to_keep{1, 3, 5};
+    cell.RemoveAllPossibleNumberExceptSpecified(numbers_to_keep);
+    EXPECT_EQ(numbers_to_keep, cell.GetPossibleNumbers());
+}
+
 // ---------- connected row/column index tests ------------------------------------------
 class ConnectedRowsColsParamTests
     : public ::testing::TestWithParam<std::tuple<std::size_t, std::array<std::size_t, 2U>>> {};

@@ -6,7 +6,7 @@
 
 class SolverSimpleExclude : public ISolver {
 public:
-    void Solve(Sudoku& sudoku) override;
+    void Solve(Sudoku& sudoku) final;
 };
 
 #endif//SUDOKU_SOLVER_SOLVERSIMPLEEXCLUDE_H

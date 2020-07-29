@@ -12,7 +12,7 @@
  */
 class SolverNakedPairs : public ISolver {
 public:
-    void Solve(Sudoku &sudoku);
+    void Solve(Sudoku &sudoku) final;
 
 private:
     void FindNakedPair(const CellContainer *cell_container);

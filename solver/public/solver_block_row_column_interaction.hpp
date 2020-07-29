@@ -6,7 +6,7 @@
 
 class SolverBlockRowColumnInteraction : public ISolver {
 public:
-    void Solve(Sudoku &sudoku) override;
+    void Solve(Sudoku &sudoku) final;
 
 private:
     Column *FindColumnWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku, const Rectangle *rectangle,

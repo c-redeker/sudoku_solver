@@ -21,6 +21,8 @@ public:
 
     std::vector<std::size_t> GetPossibleNumbers();
     bool IsNumberPossible(std::size_t number) const;
+    bool AllNumbersPossible(const std::vector<std::size_t> &numbers) const;
+    bool AnyNumberPossible(const std::vector<std::size_t> &numbers) const;
     std::size_t GetCountPossibleNumbers();
     void RemoveNumbersFromPossibleNumbers(const std::vector<std::size_t> &numbers_to_remove);
     void RemoveAllPossibleNumberExceptSpecified(const std::vector<std::size_t> &numbers_to_keep);
@@ -31,16 +33,16 @@ private:
     std::size_t m_column_index{0};   // [0..8]
     std::size_t m_rectangle_index{0};// [0..8]
     bool m_is_cell_filled{false};
-    std::array<std::size_t, 2U> m_connected_row_indices{0,0};
-    std::array<std::size_t, 2U> m_connected_column_indices{0,0};
-    std::array<std::size_t, 2U> m_connected_rectangle_row_indices{0,0};
-    std::array<std::size_t, 2U> m_connected_rectangle_column_indices{0,0};
+    std::array<std::size_t, 2U> m_connected_row_indices{0, 0};
+    std::array<std::size_t, 2U> m_connected_column_indices{0, 0};
+    std::array<std::size_t, 2U> m_connected_rectangle_row_indices{0, 0};
+    std::array<std::size_t, 2U> m_connected_rectangle_column_indices{0, 0};
 
     std::vector<std::size_t> m_possible_numbers;
     // methods:
     void CalculateConnectedRowIndices();
     void CalculateConnectedColumnIndices();
-    static void CalculateConnectedIndices(const std::size_t index, std::array<std::size_t, 2>& connected_indices);
+    static void CalculateConnectedIndices(const std::size_t index, std::array<std::size_t, 2> &connected_indices);
     void CalculateRectangleIndex();
     void UpdateCellFilledAttribute();
     void UpdatePossibleNumbers();
