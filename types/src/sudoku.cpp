@@ -2,7 +2,32 @@
 
 #include <cmath>
 
-Sudoku::Sudoku(const std::array<std::size_t, 81> &numbers) { CreateSudoku(numbers); };
+Sudoku::Sudoku(const std::array<std::size_t, 81> &numbers) { CreateSudoku(numbers); }
+
+Sudoku::~Sudoku() {
+    for (auto&cell : m_cells) {
+        cell = nullptr;
+        delete cell;
+    }
+
+    for (auto& container : m_rows) {
+        container = nullptr;
+        delete container;
+    }
+    for (auto& container : m_columns) {
+        container = nullptr;
+        delete container;
+    }
+    for (auto& container : m_rectangles) {
+        container = nullptr;
+        delete container;
+    }
+
+    for (auto& container : m_cell_containers) {
+        container = nullptr;
+        delete container;
+    }
+}
 
 std::vector<Cell *> Sudoku::GetEmptyCells() const {
     std::vector<Cell *> empty_cells;

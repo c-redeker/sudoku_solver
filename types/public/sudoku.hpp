@@ -13,6 +13,7 @@
 class Sudoku {
 public:
     Sudoku(const std::array<std::size_t, 81> &numbers);
+    ~Sudoku();
     std::vector<Cell *> GetEmptyCells() const;
     std::size_t GetCountOfEmptyCells() const;
     std::array<CellContainer *, 27> GetAllCellContainers() const;

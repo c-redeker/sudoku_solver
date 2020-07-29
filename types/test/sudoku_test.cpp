@@ -2,6 +2,10 @@
 
 #include <sudoku.hpp>
 
+class SudokuFixture : public ::testing::Test {
+protected:
+};
+
 TEST(Sudoku, construct_sudoku) {
     std::array<std::size_t, 81> numbers{0};
     EXPECT_NO_THROW(Sudoku sudoku(numbers));
