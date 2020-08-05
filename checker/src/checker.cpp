@@ -2,29 +2,20 @@
 
 #include <iostream>
 
-bool SudokuChecker::IsSolvable(Sudoku &sudoku) {
+bool SudokuChecker::IsSolvable(const Sudoku &sudoku) {
     int number{0};
-    int count{1};
+    int count{0};
 
-    for (int index{0}; index < 9; ++index) {
-        const auto row = sudoku.GetRow(index);
-        CountMaxOccurrence(row, number, count);
-        if (count > 1) break;
-
-        const auto column = sudoku.GetColumn(index);
-        CountMaxOccurrence(column, number, count);
-        if (count > 1) break;
-
-        const auto rectangle = sudoku.GetRectangle(index);
-        CountMaxOccurrence(rectangle, number, count);
-        if (count > 1) break;
+    const auto all_container = sudoku.GetAllCellContainers();
+    for (const auto cell_container : all_container) {
+        CountMaxOccurrence(cell_container, number, count);
+        if (count > 1) { break; }
     }
 
     if (count > 1 && number > 0) {
-        std::cout << "Sudoku cannot be solved! Number " << number << " found multiple times \n";
+        std::cout << "Sudoku cannot be solved! Number " << number << " found multiple times in a cell container \n";
         return false;
     }
-    std::cout << "Sudoku can be solved \n";
     return true;
 }
 
@@ -42,3 +33,7 @@ void SudokuChecker::CountMaxOccurrence(const CellContainer *cell_container, int 
         }
     }
 }
+
+bool SudokuChecker::IsSolvedCorrectly(const Sudoku &sudoku) { return IsSolvable(sudoku) && IsSolvedCompletely(sudoku); }
+
+bool SudokuChecker::IsSolvedCompletely(const Sudoku &sudoku) { return sudoku.GetCountOfEmptyCells() == 0; }

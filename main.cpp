@@ -25,8 +25,10 @@ int main(int argc, char **argv) {
         // create sudoku object
         Sudoku sudoku(numbers_array);
         SudokuPrinter::PrintCellNumbers(sudoku);
-        if (!SudokuChecker::IsSolvable(sudoku)) { return 0; }
-
+        if (!SudokuChecker::IsSolvable(sudoku)) {
+            std::cout << "Sudoku is not solvable" << std::endl;
+            return 0;
+        }
 
         std::vector<ISolver *> solver_list{};
         // add more solver
@@ -52,7 +54,12 @@ int main(int argc, char **argv) {
 
         std::cout << "\n ------- solution after solving with " << solver_list.size() << " solvers ---------- \n";
         SudokuPrinter::PrintCellNumbers(sudoku);
-        SudokuChecker::IsSolvable(sudoku);
+
+        if (SudokuChecker::IsSolvedCompletely(sudoku)) {
+            if (SudokuChecker::IsSolvedCorrectly(sudoku)) { std::cout << "Sudoku is solved correctly" << std::endl; }
+        } else {
+            if (SudokuChecker::IsSolvable(sudoku)) { std::cout << "Sudoku is still solvable" << std::endl; }
+        }
     }
     return 0;
 }

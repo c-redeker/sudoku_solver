@@ -5,7 +5,9 @@
 
 class SudokuChecker {
 public:
-    static bool IsSolvable(Sudoku& sudoku);
+    static bool IsSolvable(const Sudoku& sudoku);
+    static bool IsSolvedCorrectly(const Sudoku& sudoku);
+    static bool IsSolvedCompletely(const Sudoku& sudoku);
 
 private:
     static void CountMaxOccurrence(const CellContainer* cell_container, int& number, int& count);
