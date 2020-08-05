@@ -99,8 +99,38 @@ TEST_F(SolverFixture, SolverHiddenPair_work_on_first_column) {
     std::vector<std::size_t> expected_numbers_3{3};
     ASSERT_EQ(expected_numbers_3, sudoku.GetCell(2, 0)->GetPossibleNumbers());
 
-    std::vector<std::size_t> expected_number_3_4{3,4};
+    std::vector<std::size_t> expected_number_3_4{3, 4};
     ASSERT_EQ(expected_number_3_4, sudoku.GetCell(3, 0)->GetPossibleNumbers());
+}
+
+TEST_F(SolverFixture, SolverHiddenPair_work_on_second_rectangle) {
+    // testcase from http://www.sudoku-space.de/sudoku-loesungstechniken/
+    auto sudoku = CreateEmptySudoku();
+    sudoku.GetCell(0, 3)->SetNumber(6U);
+    sudoku.GetCell(1, 3)->SetNumber(3U);
+    sudoku.GetCell(1, 4)->SetNumber(4U);
+    sudoku.GetCell(2, 5)->SetNumber(9U);
+    sudoku.GetCell(0, 4)->RemoveNumbersFromPossibleNumbers({2, 4, 5, 6, 9});
+    sudoku.GetCell(0, 5)->RemoveNumbersFromPossibleNumbers({3, 4, 6, 7, 9});
+    sudoku.GetCell(1, 5)->RemoveNumbersFromPossibleNumbers({2, 3, 4, 5, 6, 7, 9});
+    sudoku.GetCell(2, 3)->RemoveNumbersFromPossibleNumbers({1, 3, 4, 6, 9});
+    sudoku.GetCell(2, 4)->RemoveNumbersFromPossibleNumbers({1, 2, 3, 4, 5, 6, 9});
+
+    SolverHiddenPairs solver_hidden_pairs{};
+    solver_hidden_pairs.Solve(sudoku);
+
+    std::vector<std::size_t> expected_numbers_2_5{2, 5};
+    ASSERT_EQ(expected_numbers_2_5, sudoku.GetCell(0, 5)->GetPossibleNumbers());
+    ASSERT_EQ(expected_numbers_2_5, sudoku.GetCell(2, 3)->GetPossibleNumbers());
+
+    std::vector<std::size_t> expected_numbers_1_3_7_8{1, 3, 7, 8};
+    ASSERT_EQ(expected_numbers_1_3_7_8, sudoku.GetCell(0, 4)->GetPossibleNumbers());
+
+    std::vector<std::size_t> expected_numbers_1_8{1, 8};
+    ASSERT_EQ(expected_numbers_1_8, sudoku.GetCell(1, 5)->GetPossibleNumbers());
+
+    std::vector<std::size_t> expected_numbers_7_8{7, 8};
+    ASSERT_EQ(expected_numbers_7_8, sudoku.GetCell(2, 4)->GetPossibleNumbers());
 }
 
 // ---------- main ---------------------------------------------------------------------
