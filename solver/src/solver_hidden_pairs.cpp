@@ -19,15 +19,18 @@ void SolverHiddenPairs::FindHiddenPair(const CellContainer *cell_container) {
 }
 
 std::vector<Subset> SolverHiddenPairs::FindAllUniqueSubsetsInContainer(const CellContainer *cell_container) {
+    const auto filled_numbers = cell_container->GetFilledNumbers();
     auto empty_cells = cell_container->GetEmptyCells();
     std::vector<Subset> all_subsets{};
     for (auto empty_cell : empty_cells) {
-        const auto possible_numbers = empty_cell->GetPossibleNumbers();
-        const auto subsets = SubsetsGenerator::CreateSubsets(possible_numbers);
-        for (const auto &subset : subsets) {
-            if (subset.size() <= kMaxSubsetSize &&
-                !(std::find(all_subsets.begin(), all_subsets.end(), subset) != all_subsets.end())) {
-                all_subsets.push_back(subset);
+        if (empty_cell->ArePossibleNumbersCorrect(filled_numbers)) {
+            const auto possible_numbers = empty_cell->GetPossibleNumbers();
+            const auto subsets = SubsetsGenerator::CreateSubsets(possible_numbers);
+            for (const auto &subset : subsets) {
+                if (subset.size() <= kMaxSubsetSize &&
+                    !(std::find(all_subsets.begin(), all_subsets.end(), subset) != all_subsets.end())) {
+                    all_subsets.push_back(subset);
+                }
             }
         }
     }

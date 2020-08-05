@@ -48,6 +48,17 @@ bool Cell::AnyNumberPossible(const std::vector<std::size_t> &numbers) const {
     return false;
 }
 
+bool Cell::ArePossibleNumbersCorrect(const std::vector<std::size_t> &filled_numbers_in_container) const {
+    for (const auto possible_number : m_possible_numbers) {
+        for (const auto filled_number : filled_numbers_in_container) {
+            if (possible_number == filled_number) {
+                return false;
+            }
+        }
+    }
+    return true;
+}
+
 std::size_t Cell::GetCountPossibleNumbers() { return m_possible_numbers.size(); };
 
 void Cell::UpdateCellFilledAttribute() { m_is_cell_filled = (m_number > 0U && m_number < 10U); };

@@ -23,6 +23,7 @@ public:
     bool IsNumberPossible(std::size_t number) const;
     bool AllNumbersPossible(const std::vector<std::size_t> &numbers) const;
     bool AnyNumberPossible(const std::vector<std::size_t> &numbers) const;
+    bool ArePossibleNumbersCorrect(const std::vector<std::size_t> &filled_numbers_in_container) const;
     std::size_t GetCountPossibleNumbers();
     void RemoveNumbersFromPossibleNumbers(const std::vector<std::size_t> &numbers_to_remove);
     void RemoveAllPossibleNumberExceptSpecified(const std::vector<std::size_t> &numbers_to_keep);

@@ -64,6 +64,30 @@ TEST(Cell, remove_all_numbers_except_specified) {
     EXPECT_EQ(numbers_to_keep, cell.GetPossibleNumbers());
 }
 
+TEST(Cell, are_possible_numbers_correct_TRUE) {
+    std::size_t number{0};
+    std::size_t row_index{3};
+    std::size_t column_index{5};
+    Cell cell(number, row_index, column_index);
+
+    std::vector<std::size_t> numbers_to_keep{1, 3, 5};
+    cell.RemoveAllPossibleNumberExceptSpecified(numbers_to_keep);
+    std::vector<std::size_t> filled_numbers_in_container{2, 4, 6, 7, 8, 9};
+    EXPECT_TRUE(cell.ArePossibleNumbersCorrect(filled_numbers_in_container));
+}
+
+TEST(Cell, are_possible_numbers_correct_FALSE) {
+    std::size_t number{0};
+    std::size_t row_index{3};
+    std::size_t column_index{5};
+    Cell cell(number, row_index, column_index);
+
+    std::vector<std::size_t> numbers_to_keep{1, 3, 5};
+    cell.RemoveAllPossibleNumberExceptSpecified(numbers_to_keep);
+    std::vector<std::size_t> filled_numbers_in_container{1, 4, 6, 7, 8, 9};
+    EXPECT_FALSE(cell.ArePossibleNumbersCorrect(filled_numbers_in_container));
+}
+
 // ---------- connected row/column index tests ------------------------------------------
 class ConnectedRowsColsParamTests
     : public ::testing::TestWithParam<std::tuple<std::size_t, std::array<std::size_t, 2U>>> {};

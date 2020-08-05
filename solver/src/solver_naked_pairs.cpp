@@ -8,6 +8,7 @@ void SolverNakedPairs::Solve(Sudoku &sudoku) {
 }
 
 void SolverNakedPairs::FindNakedPair(const CellContainer *cell_container) {
+    const auto filled_numbers = cell_container->GetFilledNumbers();
     for (int count_numbers_left{2}; count_numbers_left < 6; ++count_numbers_left) {
         auto cells_equal_count_of_possible_numbers =
                 cell_container->GetCellsWithEqualCountOfPossibleNumbers(count_numbers_left);
@@ -17,8 +18,11 @@ void SolverNakedPairs::FindNakedPair(const CellContainer *cell_container) {
             for (auto cell : cell_container->GetEmptyCells()) {
                 if (!(std::find(cells_equal_count_of_possible_numbers.begin(),
                                 cells_equal_count_of_possible_numbers.end(),
-                                cell) != cells_equal_count_of_possible_numbers.end()))
-                    cell->RemoveNumbersFromPossibleNumbers(numbers_to_remove);
+                                cell) != cells_equal_count_of_possible_numbers.end())) {
+                    if (cell->ArePossibleNumbersCorrect(filled_numbers)) {
+                        cell->RemoveNumbersFromPossibleNumbers(numbers_to_remove);
+                    }
+                }
             }
         }
     }

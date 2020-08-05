@@ -1,12 +1,12 @@
-#include <sudoku.hpp>
 #include <checker.hpp>
 #include <printer.hpp>
 #include <reader.hpp>
+#include <solver_block_row_column_interaction.hpp>
+#include <solver_hidden_pairs.h>
+#include <solver_naked_pairs.h>
 #include <solver_simple_exclude.hpp>
 #include <solver_unique_candidates.hpp>
-#include <solver_block_row_column_interaction.hpp>
-#include <solver_naked_pairs.h>
-#include <solver_hidden_pairs.h>
+#include <sudoku.hpp>
 
 #include <vector>
 
@@ -50,7 +50,7 @@ int main(int argc, char **argv) {
             solving_step++;
         }
 
-        std::cout << "\n ------- solution after solving with 4 solvers ---------- \n";
+        std::cout << "\n ------- solution after solving with " << solver_list.size() << " solvers ---------- \n";
         SudokuPrinter::PrintCellNumbers(sudoku);
         SudokuChecker::IsSolvable(sudoku);
     }
