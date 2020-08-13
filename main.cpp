@@ -34,11 +34,11 @@ int main(int argc, char **argv) {
         std::vector<ISolver *> solver_list{};
         // add more solver
         solver_list.push_back(new SolverSimpleExclude{});
-        solver_list.push_back(new SolverUniqueCandidates{});
         solver_list.push_back(new SolverBlockRowColumnInteraction{});
         solver_list.push_back(new SolverNakedPairs{});
         solver_list.push_back(new SolverHiddenPairs{});
         solver_list.push_back(new SolverXwing{});
+        solver_list.push_back(new SolverUniqueCandidates{});
 
         std::size_t count_empty_cells_previous{82U};
         auto count_empty_cells = sudoku.GetCountOfEmptyCells();
