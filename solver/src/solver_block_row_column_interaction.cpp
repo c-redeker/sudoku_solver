@@ -16,9 +16,8 @@ void SolverBlockRowColumnInteraction::Solve(Sudoku &sudoku) {
     }
 }
 
-Column *SolverBlockRowColumnInteraction::FindColumnWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku,
-                                                                                       const Rectangle *rectangle,
-                                                                                       std::size_t missing_number) {
+CellContainer *SolverBlockRowColumnInteraction::FindColumnWithUniqueOccurrenceOfMissingNumber(
+        const Sudoku &sudoku, const Rectangle *rectangle, std::size_t missing_number) {
     IndexOccurenceMap column_indices{};
     for (const auto empty_cell : rectangle->GetEmptyCells()) {
         if (empty_cell->IsNumberPossible(missing_number)) {
@@ -26,20 +25,20 @@ Column *SolverBlockRowColumnInteraction::FindColumnWithUniqueOccurrenceOfMissing
         }
     }
     const auto column_index = column_indices.GetSingleOccuredIndex();
-    Column *column{nullptr};
+    CellContainer *column{nullptr};
     if (column_index > -1) { column = sudoku.GetColumn(column_index); }
     return column;
 }
 
-Row *SolverBlockRowColumnInteraction::FindRowWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku,
-                                                                                 const Rectangle *rectangle,
-                                                                                 std::size_t missing_number) {
+CellContainer *SolverBlockRowColumnInteraction::FindRowWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku,
+                                                                                           const Rectangle *rectangle,
+                                                                                           std::size_t missing_number) {
     IndexOccurenceMap row_indices{};
     for (const auto empty_cell : rectangle->GetEmptyCells()) {
         if (empty_cell->IsNumberPossible(missing_number)) { row_indices.SetIndexOccurence(empty_cell->GetRowIndex()); }
     }
     const auto row_index = row_indices.GetSingleOccuredIndex();
-    Row *row{nullptr};
+    CellContainer *row{nullptr};
     if (row_index > -1) { row = sudoku.GetRow(row_index); }
     return row;
 }

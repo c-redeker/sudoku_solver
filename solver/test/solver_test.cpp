@@ -3,6 +3,7 @@
 #include <solver_block_row_column_interaction.hpp>
 #include <solver_hidden_pairs.h>
 #include <solver_simple_exclude.hpp>
+#include <solver_x_wing.hpp>
 
 class SolverFixture : public ::testing::Test {
 protected:
@@ -131,6 +132,28 @@ TEST_F(SolverFixture, SolverHiddenPair_work_on_second_rectangle) {
 
     std::vector<std::size_t> expected_numbers_7_8{7, 8};
     ASSERT_EQ(expected_numbers_7_8, sudoku.GetCell(2, 4)->GetPossibleNumbers());
+}
+
+TEST_F(SolverFixture, SolverXwing_test1) {
+    // testcase from http://www.ahr-sudoku.de/solving.php/technic/X-Wing
+    auto sudoku = CreateEmptySudoku();
+    std::vector<std::size_t> column_indices{0, 8};
+    for (const auto column_index : column_indices) {
+        for (std::size_t row_index{1}; row_index < 8; ++row_index) {
+            sudoku.GetCell(row_index, column_index)->RemoveNumbersFromPossibleNumbers({1});
+        }
+    }
+
+    SolverXwing solver_x_wing{};
+    solver_x_wing.Solve(sudoku);
+
+    std::vector<std::size_t> remaining_numbers{2, 3, 4, 5, 6, 7, 8, 9};
+    std::vector<std::size_t> row_indices{0, 8};
+    for (const auto row_index : row_indices) {
+        for (std::size_t column_index{1}; column_index < 8; ++column_index) {
+            ASSERT_EQ(remaining_numbers, sudoku.GetCell(row_index, column_index)->GetPossibleNumbers());
+        }
+    }
 }
 
 // ---------- main ---------------------------------------------------------------------

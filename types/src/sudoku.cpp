@@ -5,25 +5,25 @@
 Sudoku::Sudoku(const std::array<std::size_t, 81> &numbers) { CreateSudoku(numbers); }
 
 Sudoku::~Sudoku() {
-    for (auto&cell : m_cells) {
+    for (auto &cell : m_cells) {
         cell = nullptr;
         delete cell;
     }
 
-    for (auto& container : m_rows) {
+    for (auto &container : m_rows) {
         container = nullptr;
         delete container;
     }
-    for (auto& container : m_columns) {
+    for (auto &container : m_columns) {
         container = nullptr;
         delete container;
     }
-    for (auto& container : m_rectangles) {
+    for (auto &container : m_rectangles) {
         container = nullptr;
         delete container;
     }
 
-    for (auto& container : m_cell_containers) {
+    for (auto &container : m_cell_containers) {
         container = nullptr;
         delete container;
     }
@@ -87,7 +87,7 @@ void Sudoku::CreateRowsOfSudoku() {
         for (std::size_t column_index{0}; column_index < 9; ++column_index) {
             cells_of_row[column_index] = GetCell(row_index, column_index);
         }
-        Row *row = new Row(cells_of_row, row_index);
+        CellContainer *row = new CellContainer(cells_of_row, row_index);
         m_rows[row_index] = row;
     }
 };
@@ -98,7 +98,7 @@ void Sudoku::CreateColumnsOfSudoku() {
         for (std::size_t row_index{0}; row_index < 9; ++row_index) {
             cells_of_column[row_index] = GetCell(row_index, column_index);
         }
-        Column *column = new Column(cells_of_column, column_index);
+        CellContainer *column = new CellContainer(cells_of_column, column_index);
         m_columns[column_index] = column;
     }
 };
@@ -139,6 +139,10 @@ Rectangle *Sudoku::GetRectangle(std::size_t index) const { return m_rectangles[i
 
 std::array<Rectangle *, 9> Sudoku::GetAllRectangles() const { return m_rectangles; }
 
-Row *Sudoku::GetRow(std::size_t index) const { return m_rows[index]; }
+CellContainer *Sudoku::GetRow(std::size_t index) const { return m_rows[index]; }
 
-Column *Sudoku::GetColumn(std::size_t index) const { return m_columns[index]; }
+const std::array<CellContainer *, 9> &Sudoku::GetAllRows() const { return m_rows; }
+
+CellContainer *Sudoku::GetColumn(std::size_t index) const { return m_columns[index]; }
+
+const std::array<CellContainer *, 9> &Sudoku::GetAllColumns() const { return m_columns; }

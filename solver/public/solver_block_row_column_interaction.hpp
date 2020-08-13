@@ -9,10 +9,10 @@ public:
     void Solve(Sudoku &sudoku) final;
 
 private:
-    Column *FindColumnWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku, const Rectangle *rectangle,
-                                                          std::size_t missing_number);
-    Row *FindRowWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku, const Rectangle *rectangle,
-                                                    std::size_t missing_number);
+    CellContainer *FindColumnWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku, const Rectangle *rectangle,
+                                                                 std::size_t missing_number);
+    CellContainer *FindRowWithUniqueOccurrenceOfMissingNumber(const Sudoku &sudoku, const Rectangle *rectangle,
+                                                              std::size_t missing_number);
     void RemovePossibleNumberFromOtherRectangles(const CellContainer *cell_container, std::size_t rectangle_index,
                                                  std::size_t number);
 };

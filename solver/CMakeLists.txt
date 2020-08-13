@@ -4,7 +4,8 @@ add_library(solver
         src/free_functions_solver.cpp
         src/solver_naked_pairs.cpp
         src/solver_block_row_column_interaction.cpp
-        src/solver_hidden_pairs.cpp)
+        src/solver_hidden_pairs.cpp
+        src/solver_x_wing.cpp)
 target_include_directories(solver PUBLIC
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/public>)
 target_link_libraries(solver PUBLIC types)

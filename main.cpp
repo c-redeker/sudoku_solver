@@ -6,6 +6,7 @@
 #include <solver_naked_pairs.h>
 #include <solver_simple_exclude.hpp>
 #include <solver_unique_candidates.hpp>
+#include <solver_x_wing.hpp>
 #include <sudoku.hpp>
 
 #include <vector>
@@ -37,6 +38,7 @@ int main(int argc, char **argv) {
         solver_list.push_back(new SolverBlockRowColumnInteraction{});
         solver_list.push_back(new SolverNakedPairs{});
         solver_list.push_back(new SolverHiddenPairs{});
+        solver_list.push_back(new SolverXwing{});
 
         std::size_t count_empty_cells_previous{82U};
         auto count_empty_cells = sudoku.GetCountOfEmptyCells();
