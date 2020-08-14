@@ -2,7 +2,7 @@
 This repo contains a solver for sudokus (not finished yet).
 
 ## Dependencies
-[googletest](https://github.com/google/googletest)
+[googletest](https://github.com/google/googletest)  
 [Qt5](https://doc.qt.io/qt-5/gettingstarted.html)
 
 Installation of dependencies via scripts/install_dependencies.sh possible.
