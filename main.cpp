@@ -8,10 +8,12 @@
 #include <solver_unique_candidates.hpp>
 #include <solver_x_wing.hpp>
 #include <sudoku.hpp>
+#include <gui.hpp>
 
 #include <vector>
 
 int main(int argc, char **argv) {
+    SudokuGui gui(argc, argv);
     if (argc < 2) {
         std::cout << "Please provide a file containing the sudoku to solve as an input argument. \n";
         return 0;
@@ -52,6 +54,8 @@ int main(int argc, char **argv) {
             count_empty_cells = sudoku.GetCountOfEmptyCells();
             std::cout << "Remaining empty cells: " << count_empty_cells << std::endl;
             solving_step++;
+
+            gui.DisplaySudoku(sudoku);
         }
 
         std::cout << "\n ------- solution after solving with " << solver_list.size() << " solvers ---------- \n";
@@ -63,5 +67,6 @@ int main(int argc, char **argv) {
             if (SudokuChecker::IsSolvable(sudoku)) { std::cout << "Sudoku is still solvable" << std::endl; }
         }
     }
+
     return 0;
 }

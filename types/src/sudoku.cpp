@@ -135,6 +135,8 @@ std::array<Cell *, 9> Sudoku::GetRectangleCells(std::size_t rectangle_index) con
 
 Cell *Sudoku::GetCell(std::size_t row, std::size_t column) const { return m_grid[row][column]; };
 
+std::array<Cell *, 81> Sudoku::GetAllCells() const { return m_cells; }
+
 Rectangle *Sudoku::GetRectangle(std::size_t index) const { return m_rectangles[index]; }
 
 std::array<Rectangle *, 9> Sudoku::GetAllRectangles() const { return m_rectangles; }

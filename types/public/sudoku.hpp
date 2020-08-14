@@ -22,6 +22,7 @@ public:
     CellContainer *GetColumn(std::size_t index) const;
     const std::array<CellContainer *, 9> &GetAllColumns() const;
     Cell *GetCell(std::size_t row, std::size_t column) const;
+    std::array<Cell *, 81> GetAllCells() const;
 
 private:
     std::array<Cell *, 81> m_cells;
