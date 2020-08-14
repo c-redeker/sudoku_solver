@@ -14,8 +14,9 @@ public:
 private:
     QApplication m_q_application;
     QTableWidget m_table_widget{};
-    static void CreateFilledCellItem(QTableWidgetItem *item, const std::size_t number);
-    static void CreateEmptyCellItem(QTableWidgetItem *item, const std::vector<std::size_t> &possible_numbers);
+    static void WriteNumberIntoCellItem(QTableWidgetItem *item, const std::size_t number);
+    static void WritePossibleNumbersIntoCellItem(QTableWidgetItem *item,
+                                                 const std::vector<std::size_t> &possible_numbers);
 };
 
 #endif//SUDOKU_SOLVER_GUI_H
