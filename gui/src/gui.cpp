@@ -2,20 +2,32 @@
 
 #include <QHeaderView>
 
-SudokuGui::SudokuGui(int &argc, char *argv[]) : m_q_application{argc, argv} {
-    m_table_widget.setRowCount(9);
-    m_table_widget.setColumnCount(9);
+static constexpr int kCountRowsColumns{9};
+static constexpr int kCellSize{65};
+
+SudokuGui::SudokuGui() {
+    this->setFixedSize(kCountRowsColumns * kCellSize + 50, kCountRowsColumns * kCellSize + 50);
+
+    CreateTableWidget();
+}
+
+void SudokuGui::CreateTableWidget() {
+    m_table_widget.setRowCount(kCountRowsColumns);
+    m_table_widget.setColumnCount(kCountRowsColumns);
     m_table_widget.setShowGrid(true);
     m_table_widget.setSortingEnabled(false);
-    m_table_widget.setLineWidth(9);
+    m_table_widget.setLineWidth(2);
 
-    m_table_widget.horizontalHeader()->setDefaultSectionSize(65);
+    m_table_widget.horizontalHeader()->setDefaultSectionSize(kCellSize);
     m_table_widget.horizontalHeader()->setHighlightSections(false);
     m_table_widget.horizontalHeader()->setVisible(false);
 
-    m_table_widget.verticalHeader()->setDefaultSectionSize(65);
+    m_table_widget.verticalHeader()->setDefaultSectionSize(kCellSize);
     m_table_widget.verticalHeader()->setHighlightSections(false);
     m_table_widget.verticalHeader()->setVisible(false);
+
+    m_table_widget.move(10, 10);
+    m_table_widget.resize(kCountRowsColumns * kCellSize + 10, kCountRowsColumns * kCellSize + 10);
 
     for (int row_index{0}; row_index < 9; ++row_index) {
         for (int column_index{0}; column_index < 9; ++column_index) {
@@ -36,8 +48,7 @@ void SudokuGui::DisplaySudoku(const Sudoku &sudoku) {
             WritePossibleNumbersIntoCellItem(table_item, cell->GetPossibleNumbers());
         }
     }
-    m_table_widget.show();
-    m_q_application.exec();
+    show();
 }
 
 void SudokuGui::WriteNumberIntoCellItem(QTableWidgetItem *item, const std::size_t number) {
@@ -68,6 +79,5 @@ void SudokuGui::WritePossibleNumbersIntoCellItem(QTableWidgetItem *item,
             string.append("  ");
         }
     }
-
     item->setText(string);
 }

@@ -8,12 +8,12 @@
 #include <solver_unique_candidates.hpp>
 #include <solver_x_wing.hpp>
 #include <sudoku.hpp>
-#include <gui.hpp>
+#include <gui_application.hpp>
 
 #include <vector>
 
 int main(int argc, char **argv) {
-    SudokuGui gui(argc, argv);
+    SudokuGuiApplication gui(argc, argv);
     if (argc < 2) {
         std::cout << "Please provide a file containing the sudoku to solve as an input argument. \n";
         return 0;
