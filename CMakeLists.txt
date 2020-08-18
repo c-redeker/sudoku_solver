@@ -12,14 +12,6 @@ endif()
 
 find_package(Qt5 COMPONENTS Widgets REQUIRED)
 
-add_subdirectory(types)
-add_subdirectory(solver)
-add_subdirectory(reader)
-add_subdirectory(printer)
-add_subdirectory(checker)
-add_subdirectory(gui)
+add_subdirectory(src)
 
-add_executable(sudoku_solver_main main.cpp)
-target_link_libraries(sudoku_solver_main reader solver printer checker gui)
-
-file(COPY data/sudokus.txt DESTINATION ${CMAKE_BINARY_DIR})
+file(COPY data/sudokus.txt DESTINATION ${CMAKE_BINARY_DIR}/src)

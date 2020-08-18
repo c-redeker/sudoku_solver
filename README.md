@@ -14,9 +14,10 @@ cd _build
 cmake ..
 make
 ```
+Build via scripts/build.sh possible
 
 ## Usage
-from build directory _build run
+from build directory _build/src run
 ```bash
 ./sudoku_solver_main sudokus.txt
 ```

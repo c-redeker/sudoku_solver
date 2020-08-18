@@ -36,7 +36,7 @@ void SubsetsGenerator::IncrementLastIndexWhichIsNotOnFinalPosition(const std::ve
             ++indices[i];
 
             // move all indices after i directly behind
-            for (int index{i + 1}; index < indices.size(); ++index) { indices[index] = indices[index - 1] + 1; }
+            for (int idx{i + 1}; idx < static_cast<int>(indices.size()); ++idx) { indices[idx] = indices[idx - 1] + 1; }
             break;
         }
     }
