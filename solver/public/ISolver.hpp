@@ -6,6 +6,7 @@
 class ISolver {
 public:
     virtual void Solve(Sudoku &sudoku) = 0;
+    virtual ~ISolver() = default;
 };
 
 #endif// SUDOKU_SOLVER_INTERFACE_H

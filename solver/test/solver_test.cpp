@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
 
-#include <solver_block_row_column_interaction.hpp>
-#include <solver_hidden_pairs.h>
-#include <solver_simple_exclude.hpp>
-#include <solver_x_wing.hpp>
+#include <../src/solver_block_row_column_interaction.hpp>
+#include <../src/solver_hidden_pairs.h>
+#include <../src/solver_simple_exclude.hpp>
+#include <../src/solver_x_wing.hpp>
 
 class SolverFixture : public ::testing::Test {
 protected:
