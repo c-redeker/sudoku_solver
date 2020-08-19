@@ -5,10 +5,15 @@
 static constexpr int kCountRowsColumns{9};
 static constexpr int kCellSize{65};
 
-SudokuGui::SudokuGui() {
-    this->setFixedSize(kCountRowsColumns * kCellSize + 50, kCountRowsColumns * kCellSize + 50);
+SudokuGui::SudokuGui(std::shared_ptr<Sudoku> sudoku, std::shared_ptr<SudokuSolver> solver)
+    : m_sudoku(sudoku), m_solver(solver) {
+    
+    this->setFixedSize(kCountRowsColumns * kCellSize + 150, kCountRowsColumns * kCellSize + 50);
 
     CreateTableWidget();
+    CreateButtonSolve();
+    DisplaySudoku();
+    show();
 }
 
 void SudokuGui::CreateTableWidget() {
@@ -38,8 +43,23 @@ void SudokuGui::CreateTableWidget() {
     }
 }
 
-void SudokuGui::DisplaySudoku(const Sudoku &sudoku) {
-    for (const auto cell : sudoku.GetAllCells()) {
+void SudokuGui::CreateButtonSolve() {
+    m_button_solve.move(kCountRowsColumns * kCellSize + 30, 10);
+    m_button_solve.resize(100, 40);
+    m_button_solve.setText("Solve");
+    bool success = connect(&m_button_solve, &QPushButton::clicked, this, &SudokuGui::SolveAndDisplaySudoku);
+    Q_ASSERT(success);
+}
+
+void SudokuGui::SolveAndDisplaySudoku() {
+    SolveSudoku();
+    DisplaySudoku();
+}
+
+void SudokuGui::SolveSudoku() { m_solver->Solve(*m_sudoku); }
+
+void SudokuGui::DisplaySudoku() {
+    for (const auto cell : m_sudoku->GetAllCells()) {
         auto table_item = m_table_widget.item(cell->GetRowIndex(), cell->GetColumnIndex());
 
         if (cell->IsCellFilled()) {
@@ -48,7 +68,6 @@ void SudokuGui::DisplaySudoku(const Sudoku &sudoku) {
             WritePossibleNumbersIntoCellItem(table_item, cell->GetPossibleNumbers());
         }
     }
-    show();
 }
 
 void SudokuGui::WriteNumberIntoCellItem(QTableWidgetItem *item, const std::size_t number) {

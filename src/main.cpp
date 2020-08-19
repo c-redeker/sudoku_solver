@@ -8,7 +8,7 @@
 #include <vector>
 
 int main(int argc, char **argv) {
-    SudokuGuiApplication gui(argc, argv);
+
     if (argc < 2) {
         std::cout << "Please provide a file containing the sudoku to solve as an input argument. \n";
         return 0;
@@ -21,24 +21,23 @@ int main(int argc, char **argv) {
         for (std::size_t i{}; i < numbers_array.size(); ++i) { numbers_array[i] = numbers[i]; }
 
         // create sudoku object
-        Sudoku sudoku(numbers_array);
-        SudokuPrinter::PrintCellNumbers(sudoku);
-        if (!SudokuChecker::IsSolvable(sudoku)) {
+        std::shared_ptr<Sudoku> sudoku = std::make_shared<Sudoku>(numbers_array);
+        SudokuPrinter::PrintCellNumbers(*sudoku);
+        if (!SudokuChecker::IsSolvable(*sudoku)) {
             std::cout << "Sudoku is not solvable" << std::endl;
             return 0;
         }
 
-        SudokuSolver solver{};
-        solver.Solve(sudoku);
+        std::shared_ptr<SudokuSolver> solver = std::make_shared<SudokuSolver>();
 
-        gui.DisplaySudoku(sudoku);
+        SudokuGuiApplication gui(argc, argv, sudoku, solver);
 
-        SudokuPrinter::PrintCellNumbers(sudoku);
+        SudokuPrinter::PrintCellNumbers(*sudoku);
 
-        if (SudokuChecker::IsSolvedCompletely(sudoku)) {
-            if (SudokuChecker::IsSolvedCorrectly(sudoku)) { std::cout << "Sudoku is solved correctly" << std::endl; }
+        if (SudokuChecker::IsSolvedCompletely(*sudoku)) {
+            if (SudokuChecker::IsSolvedCorrectly(*sudoku)) { std::cout << "Sudoku is solved correctly" << std::endl; }
         } else {
-            if (SudokuChecker::IsSolvable(sudoku)) { std::cout << "Sudoku is still solvable" << std::endl; }
+            if (SudokuChecker::IsSolvable(*sudoku)) { std::cout << "Sudoku is still solvable" << std::endl; }
         }
     }
     return 0;

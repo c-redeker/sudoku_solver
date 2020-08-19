@@ -2,22 +2,34 @@
 #define SUDOKU_SOLVER_GUI_H
 
 #include <QMainWindow>
+#include <QPushButton>
 #include <QTableWidget>
-#include <array>
 #include <sudoku.hpp>
+#include <sudoku_solver.hpp>
 
-class SudokuGui : QMainWindow {
+#include <array>
+
+class SudokuGui : public QMainWindow {
+
 public:
-    SudokuGui();
-    void DisplaySudoku(const Sudoku &sudoku);
+    SudokuGui(std::shared_ptr<Sudoku>, std::shared_ptr<SudokuSolver>);
+
+public slots:
+    void SolveAndDisplaySudoku();
 
 private:
     void CreateTableWidget();
+    void CreateButtonSolve();
     static void WriteNumberIntoCellItem(QTableWidgetItem *item, const std::size_t number);
     static void WritePossibleNumbersIntoCellItem(QTableWidgetItem *item,
                                                  const std::vector<std::size_t> &possible_numbers);
+    void DisplaySudoku();
+    void SolveSudoku();
 
     QTableWidget m_table_widget{this};
+    QPushButton m_button_solve{this};
+    std::shared_ptr<Sudoku> m_sudoku;
+    std::shared_ptr<SudokuSolver> m_solver;
 };
 
 #endif//SUDOKU_SOLVER_GUI_H
