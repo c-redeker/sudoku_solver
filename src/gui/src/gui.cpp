@@ -38,11 +38,8 @@ void SudokuGui::CreateTableWidget() {
         for (int column_index{0}; column_index < 9; ++column_index) {
             auto *item = new QTableWidgetItem();
             item->setTextAlignment(Qt::AlignCenter);
-            if (column_index == 3 || column_index == 4 || column_index == 5 || row_index == 3 || row_index == 4 ||
-                row_index == 5) {
-                if (!(3 <= row_index && row_index <= 5 && 3 <= column_index && column_index <= 5)) {
-                    item->setBackgroundColor(QColor{220, 220, 220});
-                }
+            if ((3 <= row_index && row_index <= 5) != (3 <= column_index && column_index <= 5)) {// XOR operation
+                item->setBackgroundColor(QColor{220, 220, 220});
             }
             m_table_widget.setItem(row_index, column_index, item);
         }
