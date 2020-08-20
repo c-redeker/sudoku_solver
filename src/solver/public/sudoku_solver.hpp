@@ -6,7 +6,8 @@
 class SudokuSolver {
 public:
     SudokuSolver();
-    void Solve(Sudoku &sudoku);
+    void Solve(Sudoku &sudoku) const;
+    void DoOneSolvingStep(Sudoku &sudoku) const;
 
 private:
     std::vector<std::unique_ptr<ISolver>> m_solver_list{};

@@ -7,10 +7,11 @@ static constexpr int kCellSize{65};
 
 SudokuGui::SudokuGui(std::shared_ptr<Sudoku> sudoku, std::shared_ptr<SudokuSolver> solver)
     : m_sudoku(sudoku), m_solver(solver) {
-    this->setFixedSize(kCountRowsColumns * kCellSize + 150, kCountRowsColumns * kCellSize + 50);
+    this->setFixedSize(kCountRowsColumns * kCellSize + 200, kCountRowsColumns * kCellSize + 50);
 
     CreateTableWidget();
     CreateButtonSolve();
+    CreateButtonSolveStep();
     DisplaySudoku();
     show();
 }
@@ -48,14 +49,27 @@ void SudokuGui::CreateTableWidget() {
 
 void SudokuGui::CreateButtonSolve() {
     m_button_solve.move(kCountRowsColumns * kCellSize + 30, 10);
-    m_button_solve.resize(100, 40);
-    m_button_solve.setText("Solve");
+    m_button_solve.resize(150, 40);
+    m_button_solve.setText("solve completely");
     bool success = connect(&m_button_solve, &QPushButton::clicked, this, &SudokuGui::SolveAndDisplaySudoku);
+    Q_ASSERT(success);
+}
+
+void SudokuGui::CreateButtonSolveStep() {
+    m_button_solve_step.move(kCountRowsColumns * kCellSize + 30, 60);
+    m_button_solve_step.resize(150, 40);
+    m_button_solve_step.setText("solve step by step");
+    bool success = connect(&m_button_solve_step, &QPushButton::clicked, this, &SudokuGui::SolveOneStepAndDisplaySudoku);
     Q_ASSERT(success);
 }
 
 void SudokuGui::SolveAndDisplaySudoku() {
     SolveSudoku();
+    DisplaySudoku();
+}
+
+void SudokuGui::SolveOneStepAndDisplaySudoku() {
+    m_solver->DoOneSolvingStep(*m_sudoku);
     DisplaySudoku();
 }
 

@@ -18,16 +18,20 @@ SudokuSolver::SudokuSolver() {
     m_solver_list.push_back(std::make_unique<SolverUniqueCandidates>());
 }
 
-void SudokuSolver::Solve(Sudoku &sudoku) {
+void SudokuSolver::Solve(Sudoku &sudoku) const {
     std::size_t count_empty_cells_previous{82U};
     auto count_empty_cells = sudoku.GetCountOfEmptyCells();
 
     std::size_t solving_step{1};
     while (count_empty_cells < count_empty_cells_previous && count_empty_cells > 0) {
-        for (const auto &solver : m_solver_list) { solver->Solve(sudoku); }
+        DoOneSolvingStep(sudoku);
 
         count_empty_cells_previous = count_empty_cells;
         count_empty_cells = sudoku.GetCountOfEmptyCells();
         solving_step++;
     }
+}
+
+void SudokuSolver::DoOneSolvingStep(Sudoku &sudoku) const {
+    for (const auto &solver : m_solver_list) { solver->Solve(sudoku); }
 }
