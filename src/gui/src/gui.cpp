@@ -7,7 +7,6 @@ static constexpr int kCellSize{65};
 
 SudokuGui::SudokuGui(std::shared_ptr<Sudoku> sudoku, std::shared_ptr<SudokuSolver> solver)
     : m_sudoku(sudoku), m_solver(solver) {
-    
     this->setFixedSize(kCountRowsColumns * kCellSize + 150, kCountRowsColumns * kCellSize + 50);
 
     CreateTableWidget();
@@ -22,6 +21,7 @@ void SudokuGui::CreateTableWidget() {
     m_table_widget.setShowGrid(true);
     m_table_widget.setSortingEnabled(false);
     m_table_widget.setLineWidth(2);
+    m_table_widget.setGridStyle(Qt::PenStyle::SolidLine);
 
     m_table_widget.horizontalHeader()->setDefaultSectionSize(kCellSize);
     m_table_widget.horizontalHeader()->setHighlightSections(false);
@@ -38,6 +38,12 @@ void SudokuGui::CreateTableWidget() {
         for (int column_index{0}; column_index < 9; ++column_index) {
             auto *item = new QTableWidgetItem();
             item->setTextAlignment(Qt::AlignCenter);
+            if (column_index == 3 || column_index == 4 || column_index == 5 || row_index == 3 || row_index == 4 ||
+                row_index == 5) {
+                if (!(3 <= row_index && row_index <= 5 && 3 <= column_index && column_index <= 5)) {
+                    item->setBackgroundColor(QColor{220, 220, 220});
+                }
+            }
             m_table_widget.setItem(row_index, column_index, item);
         }
     }
