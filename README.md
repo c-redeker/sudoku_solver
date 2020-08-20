@@ -1,6 +1,8 @@
 # Sudoku Solver (in progress)
 This repo contains a solver for sudokus (not finished yet).
 
+![image of GUI](docs/images/gui.png)
+
 ## Dependencies
 [googletest](https://github.com/google/googletest)  
 [Qt5](https://doc.qt.io/qt-5/gettingstarted.html)
